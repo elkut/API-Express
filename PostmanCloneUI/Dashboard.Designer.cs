@@ -146,7 +146,7 @@
             ForeColor = Color.Black;
             Margin = new Padding(6);
             Name = "Dashboard";
-            Text = "API Express";
+            Text = "API Express by Alkut Askar";
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             ResumeLayout(false);
