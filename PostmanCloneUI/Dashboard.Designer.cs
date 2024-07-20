@@ -46,9 +46,9 @@
             callAPi.ForeColor = Color.DarkKhaki;
             callAPi.Location = new Point(660, 105);
             callAPi.Name = "callAPi";
-            callAPi.Size = new Size(51, 39);
+            callAPi.Size = new Size(66, 39);
             callAPi.TabIndex = 0;
-            callAPi.Text = "GO";
+            callAPi.Text = "Send";
             callAPi.TextAlign = ContentAlignment.TopCenter;
             callAPi.UseVisualStyleBackColor = false;
             callAPi.Click += CallApi_Click;
