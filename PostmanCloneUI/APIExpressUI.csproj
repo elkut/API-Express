@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PostmanCloneLibrary\PostmanCloneLibrary.csproj" />
+    <ProjectReference Include="..\PostmanCloneLibrary\APIExpressLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
