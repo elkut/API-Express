@@ -41,14 +41,16 @@
             // 
             // callAPi
             // 
+            callAPi.BackColor = Color.FromArgb(0, 64, 64);
             callAPi.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            callAPi.ForeColor = Color.DarkKhaki;
             callAPi.Location = new Point(660, 105);
             callAPi.Name = "callAPi";
             callAPi.Size = new Size(51, 39);
             callAPi.TabIndex = 0;
             callAPi.Text = "GO";
             callAPi.TextAlign = ContentAlignment.TopCenter;
-            callAPi.UseVisualStyleBackColor = true;
+            callAPi.UseVisualStyleBackColor = false;
             callAPi.Click += CallApi_Click;
             // 
             // header
@@ -56,17 +58,19 @@
             header.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             header.AutoSize = true;
             header.Font = new Font("Stencil", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            header.Location = new Point(221, 9);
+            header.ForeColor = Color.DarkKhaki;
+            header.Location = new Point(214, 9);
             header.Name = "header";
-            header.Size = new Size(345, 57);
+            header.Size = new Size(332, 57);
             header.TabIndex = 2;
-            header.Text = "API Checker";
+            header.Text = "API Express";
             header.TextAlign = ContentAlignment.TopCenter;
             // 
             // urlLable
             // 
             urlLable.AutoSize = true;
             urlLable.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            urlLable.ForeColor = Color.DarkKhaki;
             urlLable.Location = new Point(51, 70);
             urlLable.Name = "urlLable";
             urlLable.Size = new Size(52, 28);
@@ -85,6 +89,7 @@
             // 
             // statusStrip
             // 
+            statusStrip.BackColor = Color.FromArgb(0, 64, 64);
             statusStrip.Items.AddRange(new ToolStripItem[] { systemStatus });
             statusStrip.Location = new Point(0, 570);
             statusStrip.Name = "statusStrip";
@@ -95,6 +100,7 @@
             // systemStatus
             // 
             systemStatus.Font = new Font("Bernard MT Condensed", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            systemStatus.ForeColor = Color.DarkKhaki;
             systemStatus.Name = "systemStatus";
             systemStatus.Size = new Size(60, 22);
             systemStatus.Text = "Ready";
@@ -102,7 +108,9 @@
             // resultsLabel
             // 
             resultsLabel.AutoSize = true;
+            resultsLabel.BackColor = Color.Transparent;
             resultsLabel.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            resultsLabel.ForeColor = Color.DarkKhaki;
             resultsLabel.Location = new Point(51, 176);
             resultsLabel.Name = "resultsLabel";
             resultsLabel.Size = new Size(83, 28);
@@ -111,6 +119,7 @@
             // 
             // urlBox
             // 
+            urlBox.BackColor = Color.White;
             urlBox.Location = new Point(51, 105);
             urlBox.Name = "urlBox";
             urlBox.PlaceholderText = "Past URL here";
@@ -123,7 +132,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackColor = Color.PaleGoldenrod;
+            BackColor = Color.FromArgb(0, 64, 64);
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(773, 597);
             Controls.Add(urlBox);
@@ -137,7 +146,7 @@
             ForeColor = Color.Black;
             Margin = new Padding(6);
             Name = "Dashboard";
-            Text = "API Checker";
+            Text = "API Express";
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             ResumeLayout(false);
