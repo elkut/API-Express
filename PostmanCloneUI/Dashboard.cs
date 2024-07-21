@@ -27,12 +27,7 @@ namespace PostmanCloneUI
 
             try
             {
-                //systemStatus.Text = "Calling API..";
-
-                // Sample code - replace with the actual API call
-                //await Task.Delay(1000);
-                //resultsBox.Text = await Class1.GetResultAsync(urlBox.Text);
-
+                //switch()
                 resultsBox.Text = await api.CallApiAsync(urlBox.Text);
 
                 systemStatus.Text = "Ready";
@@ -57,6 +52,9 @@ namespace PostmanCloneUI
             }
         }
 
-      
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

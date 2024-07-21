@@ -36,6 +36,7 @@
             systemStatus = new ToolStripStatusLabel();
             resultsLabel = new Label();
             urlBox = new TextBox();
+            comboBox1 = new ComboBox();
             statusStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -79,12 +80,12 @@
             // 
             // resultsBox
             // 
-            resultsBox.Location = new Point(51, 210);
+            resultsBox.Location = new Point(51, 317);
             resultsBox.Multiline = true;
             resultsBox.Name = "resultsBox";
             resultsBox.ReadOnly = true;
             resultsBox.ScrollBars = ScrollBars.Both;
-            resultsBox.Size = new Size(657, 351);
+            resultsBox.Size = new Size(657, 244);
             resultsBox.TabIndex = 4;
             // 
             // statusStrip
@@ -111,7 +112,7 @@
             resultsLabel.BackColor = Color.Transparent;
             resultsLabel.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             resultsLabel.ForeColor = Color.DarkKhaki;
-            resultsLabel.Location = new Point(51, 176);
+            resultsLabel.Location = new Point(51, 286);
             resultsLabel.Name = "resultsLabel";
             resultsLabel.Size = new Size(83, 28);
             resultsLabel.TabIndex = 7;
@@ -120,11 +121,20 @@
             // urlBox
             // 
             urlBox.BackColor = Color.White;
-            urlBox.Location = new Point(51, 105);
+            urlBox.Location = new Point(148, 105);
             urlBox.Name = "urlBox";
             urlBox.PlaceholderText = "Past URL here";
-            urlBox.Size = new Size(602, 39);
+            urlBox.Size = new Size(505, 39);
             urlBox.TabIndex = 8;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(51, 105);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(81, 40);
+            comboBox1.TabIndex = 9;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // Dashboard
             // 
@@ -135,6 +145,7 @@
             BackColor = Color.FromArgb(0, 64, 64);
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(773, 597);
+            Controls.Add(comboBox1);
             Controls.Add(urlBox);
             Controls.Add(resultsLabel);
             Controls.Add(statusStrip);
@@ -163,5 +174,6 @@
 		private Label resultsLabel;
 		private TextBox urlBox;
 		private ToolStripStatusLabel systemStatus;
-	}
+        private ComboBox comboBox1;
+    }
 }

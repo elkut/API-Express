@@ -69,7 +69,33 @@ namespace PostmanCloneLibrary
         }
 
         //PUT method
+        public async Task<string> PutApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.PUT)
+        {
+            var content = new StringContent(body,
+                                            Encoding.UTF8,
+                                            "application/json"
+                                          );
 
+            var response = await client.PutAsync(url, content);
+
+            // Check if the HTTP response was successful
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+
+                if (formatOutput)
+                {
+                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
+                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
+                }
+
+                return json;
+            }
+            else
+            {
+                return $"Error: {response.StatusCode}";
+            }
+        }
 
         //DELETE method
 
