@@ -36,19 +36,22 @@
             systemStatus = new ToolStripStatusLabel();
             resultsLabel = new Label();
             urlBox = new TextBox();
+            apiMethodBox = new ComboBox();
+            bodyBox = new TextBox();
+            bodyTextBox = new Label();
             statusStrip.SuspendLayout();
             SuspendLayout();
             // 
             // callAPi
             // 
             callAPi.BackColor = Color.FromArgb(0, 64, 64);
-            callAPi.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            callAPi.Font = new Font("Bernard MT Condensed", 18F);
             callAPi.ForeColor = Color.DarkKhaki;
             callAPi.Location = new Point(660, 105);
             callAPi.Name = "callAPi";
-            callAPi.Size = new Size(51, 39);
+            callAPi.Size = new Size(66, 39);
             callAPi.TabIndex = 0;
-            callAPi.Text = "GO";
+            callAPi.Text = "Send";
             callAPi.TextAlign = ContentAlignment.TopCenter;
             callAPi.UseVisualStyleBackColor = false;
             callAPi.Click += CallApi_Click;
@@ -71,7 +74,7 @@
             urlLable.AutoSize = true;
             urlLable.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             urlLable.ForeColor = Color.DarkKhaki;
-            urlLable.Location = new Point(51, 70);
+            urlLable.Location = new Point(51, 74);
             urlLable.Name = "urlLable";
             urlLable.Size = new Size(52, 28);
             urlLable.TabIndex = 3;
@@ -79,12 +82,12 @@
             // 
             // resultsBox
             // 
-            resultsBox.Location = new Point(51, 210);
+            resultsBox.Location = new Point(51, 302);
             resultsBox.Multiline = true;
             resultsBox.Name = "resultsBox";
             resultsBox.ReadOnly = true;
             resultsBox.ScrollBars = ScrollBars.Both;
-            resultsBox.Size = new Size(657, 351);
+            resultsBox.Size = new Size(617, 265);
             resultsBox.TabIndex = 4;
             // 
             // statusStrip
@@ -111,7 +114,7 @@
             resultsLabel.BackColor = Color.Transparent;
             resultsLabel.Font = new Font("Bernard MT Condensed", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             resultsLabel.ForeColor = Color.DarkKhaki;
-            resultsLabel.Location = new Point(51, 176);
+            resultsLabel.Location = new Point(51, 271);
             resultsLabel.Name = "resultsLabel";
             resultsLabel.Size = new Size(83, 28);
             resultsLabel.TabIndex = 7;
@@ -120,11 +123,44 @@
             // urlBox
             // 
             urlBox.BackColor = Color.White;
-            urlBox.Location = new Point(51, 105);
+            urlBox.Location = new Point(168, 105);
             urlBox.Name = "urlBox";
             urlBox.PlaceholderText = "Past URL here";
-            urlBox.Size = new Size(602, 39);
+            urlBox.Size = new Size(485, 39);
             urlBox.TabIndex = 8;
+            // 
+            // apiMethodBox
+            // 
+            apiMethodBox.BackColor = Color.FromArgb(0, 64, 64);
+            apiMethodBox.Font = new Font("Bernard MT Condensed", 18F);
+            apiMethodBox.ForeColor = Color.DarkKhaki;
+            apiMethodBox.FormattingEnabled = true;
+            apiMethodBox.Items.AddRange(new object[] { "GET", "POST", "PUT", "DELETE", "PATCH" });
+            apiMethodBox.Location = new Point(79, 105);
+            apiMethodBox.Name = "apiMethodBox";
+            apiMethodBox.Size = new Size(83, 36);
+            apiMethodBox.TabIndex = 10;
+            apiMethodBox.Text = "GET";
+            apiMethodBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // bodyBox
+            // 
+            bodyBox.Location = new Point(168, 158);
+            bodyBox.Multiline = true;
+            bodyBox.Name = "bodyBox";
+            bodyBox.Size = new Size(485, 104);
+            bodyBox.TabIndex = 11;
+            // 
+            // bodyTextBox
+            // 
+            bodyTextBox.AutoSize = true;
+            bodyTextBox.Font = new Font("Bernard MT Condensed", 18F);
+            bodyTextBox.ForeColor = Color.DarkKhaki;
+            bodyTextBox.Location = new Point(79, 164);
+            bodyTextBox.Name = "bodyTextBox";
+            bodyTextBox.Size = new Size(65, 28);
+            bodyTextBox.TabIndex = 12;
+            bodyTextBox.Text = "Body:";
             // 
             // Dashboard
             // 
@@ -135,6 +171,9 @@
             BackColor = Color.FromArgb(0, 64, 64);
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(773, 597);
+            Controls.Add(bodyTextBox);
+            Controls.Add(bodyBox);
+            Controls.Add(apiMethodBox);
             Controls.Add(urlBox);
             Controls.Add(resultsLabel);
             Controls.Add(statusStrip);
@@ -163,5 +202,8 @@
 		private Label resultsLabel;
 		private TextBox urlBox;
 		private ToolStripStatusLabel systemStatus;
-	}
+        private ComboBox apiMethodBox;
+        private TextBox bodyBox;
+        private Label bodyTextBox;
+    }
 }
