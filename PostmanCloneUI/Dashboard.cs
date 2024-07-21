@@ -27,13 +27,16 @@ namespace PostmanCloneUI
 
             try
             {
-                //systemStatus.Text = "Calling API..";
+                if (apiMethodBox.Text == "GET")
+                {
+                    resultsBox.Text = await api.CallApiAsync(urlBox.Text);
+                }
+                else if (apiMethodBox.Text == "POST")
+                {
+                    bodyBox.ReadOnly = false;
+                    resultsBox.Text = await api.PostApiAsync(urlBox.Text, bodyBox.Text);
+                }
 
-                // Sample code - replace with the actual API call
-                //await Task.Delay(1000);
-                //resultsBox.Text = await Class1.GetResultAsync(urlBox.Text);
-
-                resultsBox.Text = await api.CallApiAsync(urlBox.Text);
 
                 systemStatus.Text = "Ready";
             }
@@ -57,6 +60,9 @@ namespace PostmanCloneUI
             }
         }
 
-      
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
