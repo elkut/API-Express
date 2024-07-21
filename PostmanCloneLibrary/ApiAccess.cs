@@ -39,8 +39,8 @@ namespace PostmanCloneLibrary
             }
         }
 
-        //POST
-        public async Task<string> PostApiAsync(string url, string body ,bool formatOutput = true, HttpAction action = HttpAction.POST)
+        // POST
+        public async Task<string> PostApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.POST)
         {
             var content = new StringContent(  body, 
                                               Encoding.UTF8, 
@@ -52,7 +52,7 @@ namespace PostmanCloneLibrary
             // Check if the HTTP response was successful
             if (response.IsSuccessStatusCode)
             {
-                string json = await response.Content.ReadAsStringAsync();
+                var json = await response.Content.ReadAsStringAsync();
 
                 if (formatOutput)
                 {
@@ -66,28 +66,15 @@ namespace PostmanCloneLibrary
             {
                 return $"Error: {response.StatusCode}";
             }
-           
         }
 
-        //public async Task<string> PostApiAsync(string url, string body ,bool formatOutput = true, HttpAction action = HttpAction.POST)
-        //{
-        //    var content = new StringContent(
-        //                                      body, 
-        //                                      System.Text.Encoding.UTF8, 
-        //                                      "application/json"
-        //                                    );
-        //    //var jsonElement = JsonSerializer.Deserialize<JsonElement>(body);
-        //    //using StringContent jsonContent = new(
-        //    //    JsonSerializer.Serialize(new (jsonElement),
-        //    //   Encoding.UTF8,
-        //    //   "application/json");
+        //PUT
 
-        //    var response = await client.PostAsync(url, content);
-        //    var responseString = await response.Content.ReadAsStringAsync();
 
-        //    return responseString;
-        //}
+        //DELETE
 
+
+        // Validate URL
         public bool IsValidUrl(string url)
         {
             string Pattern = @"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
