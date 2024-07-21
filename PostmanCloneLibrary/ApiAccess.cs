@@ -37,23 +37,34 @@ namespace PostmanCloneLibrary
             }
         }
 
+        //POST
         public async Task<string> PostApiAsync(string url, string body ,bool formatOutput = true, HttpAction action = HttpAction.POST)
         {
-            var content = new StringContent(
-                                              body, 
-                                              System.Text.Encoding.UTF8, 
+            var content = new StringContent(  body, 
+                                              Encoding.UTF8, 
                                               "application/json"
                                             );
-            //var jsonElement = JsonSerializer.Deserialize<JsonElement>(body);
-            //using StringContent jsonContent = new(
-            //    JsonSerializer.Serialize(new (jsonElement),
-            //   Encoding.UTF8,
-            //   "application/json");
 
             var response = await client.PostAsync(url, content);
-            var responseString = await response.Content.ReadAsStringAsync();
 
-            return responseString;
+            // Check if the HTTP response was successful
+            if (response.IsSuccessStatusCode)
+            {
+                string json = await response.Content.ReadAsStringAsync();
+
+                if (formatOutput)
+                {
+                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
+                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
+                }
+
+                return json;
+            }
+            else
+            {
+                return $"Error: {response.StatusCode}";
+            }
+           
         }
 
         public bool IsValidUrl(string url)
