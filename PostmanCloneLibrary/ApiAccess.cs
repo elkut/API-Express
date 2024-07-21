@@ -14,7 +14,7 @@ namespace PostmanCloneLibrary
     {
         private readonly HttpClient client = new();
 
-        // GET
+        // GET method
         public async Task<string> CallApiAsync(string url, bool formatOutput = true, HttpAction action = HttpAction.GET)
         {
             var response = await client.GetAsync(url);
@@ -39,7 +39,7 @@ namespace PostmanCloneLibrary
             }
         }
 
-        // POST
+        // POST method
         public async Task<string> PostApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.POST)
         {
             var content = new StringContent(  body, 
@@ -68,10 +68,10 @@ namespace PostmanCloneLibrary
             }
         }
 
-        //PUT
+        //PUT method
 
 
-        //DELETE
+        //DELETE method
 
 
         // Validate URL
