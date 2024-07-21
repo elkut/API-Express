@@ -36,9 +36,9 @@
             systemStatus = new ToolStripStatusLabel();
             resultsLabel = new Label();
             urlBox = new TextBox();
-            comboBox1 = new ComboBox();
+            requestBox = new ComboBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            bodyBox = new TextBox();
             statusStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -129,19 +129,18 @@
             urlBox.Size = new Size(505, 39);
             urlBox.TabIndex = 8;
             // 
-            // comboBox1
+            // requestBox
             // 
-            comboBox1.BackColor = Color.FromArgb(0, 64, 64);
-            comboBox1.Font = new Font("Bernard MT Condensed", 18F);
-            comboBox1.ForeColor = Color.DarkKhaki;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "GET", "POST", "PUT", "DELET" });
-            comboBox1.Location = new Point(51, 105);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(81, 36);
-            comboBox1.TabIndex = 9;
-            comboBox1.Text = "GET";
-           
+            requestBox.BackColor = Color.FromArgb(0, 64, 64);
+            requestBox.Font = new Font("Bernard MT Condensed", 18F);
+            requestBox.ForeColor = Color.DarkKhaki;
+            requestBox.FormattingEnabled = true;
+            requestBox.Items.AddRange(new object[] { "GET", "POST", "PUT", "PATCH", "DELET" });
+            requestBox.Location = new Point(51, 105);
+            requestBox.Name = "requestBox";
+            requestBox.Size = new Size(81, 36);
+            requestBox.TabIndex = 9;
+            requestBox.Text = "GET";
             // 
             // label1
             // 
@@ -153,15 +152,14 @@
             label1.Size = new Size(65, 28);
             label1.TabIndex = 10;
             label1.Text = "Body:";
-           
             // 
-            // textBox1
+            // bodyBox
             // 
-            textBox1.Location = new Point(148, 166);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(505, 111);
-            textBox1.TabIndex = 11;
+            bodyBox.Location = new Point(148, 166);
+            bodyBox.Multiline = true;
+            bodyBox.Name = "bodyBox";
+            bodyBox.Size = new Size(505, 111);
+            bodyBox.TabIndex = 11;
             // 
             // Dashboard
             // 
@@ -172,9 +170,9 @@
             BackColor = Color.FromArgb(0, 64, 64);
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(773, 597);
-            Controls.Add(textBox1);
+            Controls.Add(bodyBox);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(requestBox);
             Controls.Add(urlBox);
             Controls.Add(resultsLabel);
             Controls.Add(statusStrip);
@@ -203,8 +201,8 @@
 		private Label resultsLabel;
 		private TextBox urlBox;
 		private ToolStripStatusLabel systemStatus;
-        private ComboBox comboBox1;
+        private ComboBox requestBox;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox bodyBox;
     }
 }

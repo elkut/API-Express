@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -97,8 +98,56 @@ namespace PostmanCloneLibrary
             }
         }
 
-        //DELETE method
+        //PATCH method
+        public async Task<string> PatchApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.PATCH)
+        {
+            var content = new StringContent(body,
+                                             Encoding.UTF8,
+                                             "application/json"
+                                           );
 
+            var response = await client.PatchAsync(url, content);
+
+            // Check if the HTTP response was successful
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+
+                if (formatOutput)
+                {
+                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
+                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
+                }
+
+                return json;
+            }
+            else
+            {
+                return $"Error: {response.StatusCode}";
+            }
+        }
+
+        //DELETE method
+        public async Task<string> DeleteApiAsync(string url, bool formatOutput = true, HttpAction action = HttpAction.DELETE)
+        {
+            var response = await client.DeleteAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+
+                if (formatOutput)
+                {
+                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
+                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
+                }
+
+                return json;
+            }
+            else
+            {
+                return $"Error: {response.StatusCode}";
+            }
+        }
 
         // Validate URL
         public bool IsValidUrl(string url)
@@ -116,5 +165,7 @@ namespace PostmanCloneLibrary
             //bool output = Uri.TryCreate(url, UriKind.Absolute, out Uri uriOutput) && (uriOutput.Scheme == Uri.UriSchemeHttps);
             //return output;
         }
+
+        
     }
 }

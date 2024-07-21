@@ -27,8 +27,27 @@ namespace PostmanCloneUI
 
             try
             {
-                //switch()
-                resultsBox.Text = await api.CallApiAsync(urlBox.Text);
+                switch(requestBox.Text)
+                {
+                    case "GET":
+                        resultsBox.Text = await api.CallApiAsync(urlBox.Text);
+                        break;
+                    case "POST":
+                        resultsBox.Text = await api.PostApiAsync(urlBox.Text,bodyBox.Text);
+                        break;
+                    case "PUT":
+                        resultsBox.Text = await api.PutApiAsync(urlBox.Text, bodyBox.Text);
+                        break;
+                    case "PATCH":
+                        resultsBox.Text = await api.PatchApiAsync(urlBox.Text, bodyBox.Text);
+                        break;
+                    case "DELETE":
+                        resultsBox.Text = await api.DeleteApiAsync(urlBox.Text);
+                        break;
+                    default:
+                        resultsBox.Text = "";
+                        break;
+                }
 
                 systemStatus.Text = "Ready";
             }
