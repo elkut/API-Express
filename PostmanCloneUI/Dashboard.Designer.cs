@@ -37,6 +37,8 @@
             resultsLabel = new Label();
             urlBox = new TextBox();
             comboBox1 = new ComboBox();
+            label1 = new Label();
+            textBox1 = new TextBox();
             statusStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,9 +49,9 @@
             callAPi.ForeColor = Color.DarkKhaki;
             callAPi.Location = new Point(660, 105);
             callAPi.Name = "callAPi";
-            callAPi.Size = new Size(51, 39);
+            callAPi.Size = new Size(63, 39);
             callAPi.TabIndex = 0;
-            callAPi.Text = "GO";
+            callAPi.Text = "Send";
             callAPi.TextAlign = ContentAlignment.TopCenter;
             callAPi.UseVisualStyleBackColor = false;
             callAPi.Click += CallApi_Click;
@@ -129,12 +131,37 @@
             // 
             // comboBox1
             // 
+            comboBox1.BackColor = Color.FromArgb(0, 64, 64);
+            comboBox1.Font = new Font("Bernard MT Condensed", 18F);
+            comboBox1.ForeColor = Color.DarkKhaki;
             comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "GET", "POST", "PUT", "DELET" });
             comboBox1.Location = new Point(51, 105);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(81, 40);
+            comboBox1.Size = new Size(81, 36);
             comboBox1.TabIndex = 9;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.Text = "GET";
+           
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Bernard MT Condensed", 18F);
+            label1.ForeColor = Color.DarkKhaki;
+            label1.Location = new Point(51, 166);
+            label1.Name = "label1";
+            label1.Size = new Size(65, 28);
+            label1.TabIndex = 10;
+            label1.Text = "Body:";
+           
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(148, 166);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(505, 111);
+            textBox1.TabIndex = 11;
             // 
             // Dashboard
             // 
@@ -145,6 +172,8 @@
             BackColor = Color.FromArgb(0, 64, 64);
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(773, 597);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
             Controls.Add(comboBox1);
             Controls.Add(urlBox);
             Controls.Add(resultsLabel);
@@ -175,5 +204,7 @@
 		private TextBox urlBox;
 		private ToolStripStatusLabel systemStatus;
         private ComboBox comboBox1;
+        private Label label1;
+        private TextBox textBox1;
     }
 }
