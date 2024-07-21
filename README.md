@@ -4,7 +4,7 @@ APIExpress is a powerful and easy-to-use API checker application designed to hel
 
 ## Features
 * User-Friendly Interface: An intuitive UI that makes it easy to send API requests.
-* Multiple Request Types: Supports GET method.
+* Multiple Request Types: Supports GET, POST, PUT, PATCH and DELETE methods.
 * Custom Headers: Easily add and manage custom headers for your requests.
 * Request Body: Supports JSON format.
 
@@ -28,7 +28,6 @@ If you have any questions or feedback, feel free to reach out:
 - LinkedIn: www.linkedin.com/in/alkut
 
 ## Future features
-- Implementing POST, PUT, DELETE and PATCH features
 - Implementing XML format
 - Implementing API headers
 - API authentication
