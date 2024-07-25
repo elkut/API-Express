@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
+
 
 namespace PostmanCloneLibrary
 {
@@ -15,129 +9,55 @@ namespace PostmanCloneLibrary
     {
         private readonly HttpClient client = new();
 
-        // GET method
-        public async Task<string> CallApiAsync(string url, bool formatOutput = true, HttpAction action = HttpAction.GET)
+        public async Task<string> CallApiAsync(string url, HttpAction action = HttpAction.GET, string body = "", bool formatOutput = true)
         {
-            var response = await client.GetAsync(url);
+            HttpResponseMessage response;
 
-            // Check if the HTTP response was successful
-            if (response.IsSuccessStatusCode)
+            switch (action)
             {
-                string json = await response.Content.ReadAsStringAsync();
-
-                if (formatOutput)
-                {
-                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
-                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
-                }
-
-                return json;
+                case HttpAction.POST:
+                    response = await client.PostAsync(url, CreateHttpContent(body));
+                    break;
+                case HttpAction.PUT:
+                    response = await client.PutAsync(url, CreateHttpContent(body));
+                    break;
+                case HttpAction.PATCH:
+                    response = await client.PatchAsync(url, CreateHttpContent(body));
+                    break;
+                case HttpAction.DELETE:
+                    response = await client.DeleteAsync(url);
+                    break;
+                case HttpAction.GET:
+                default:
+                    response = await client.GetAsync(url);
+                    break;
             }
-            else
-            {
 
-                return $"Error: {response.StatusCode}";
-            }
+            return await ProcessResponse(response, formatOutput);
         }
 
-        // POST method
-        public async Task<string> PostApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.POST)
+        private static HttpContent CreateHttpContent(string requestBody)
         {
-            var content = new StringContent(  body, 
-                                              Encoding.UTF8, 
-                                              "application/json"
-                                            );
+            // Create StringContent with the specified content, encoding, and media type
+            HttpContent httpContent = new StringContent(requestBody, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync(url, content);
+            return httpContent;
+        }
 
+
+        private static async Task<string> ProcessResponse(HttpResponseMessage response, bool formatOutput)
+        {
             // Check if the HTTP response was successful
             if (response.IsSuccessStatusCode)
             {
+                // Serialize the response(HTTP) to a string
                 var json = await response.Content.ReadAsStringAsync();
 
                 if (formatOutput)
                 {
+                    //Prase string to json element
                     var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
-                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
-                }
-
-                return json;
-            }
-            else
-            {
-                return $"Error: {response.StatusCode}";
-            }
-        }
-
-        //PUT method
-        public async Task<string> PutApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.PUT)
-        {
-            var content = new StringContent(body,
-                                            Encoding.UTF8,
-                                            "application/json"
-                                          );
-
-            var response = await client.PutAsync(url, content);
-
-            // Check if the HTTP response was successful
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-
-                if (formatOutput)
-                {
-                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
-                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
-                }
-
-                return json;
-            }
-            else
-            {
-                return $"Error: {response.StatusCode}";
-            }
-        }
-
-        //PATCH method
-        public async Task<string> PatchApiAsync(string url, string body, bool formatOutput = true, HttpAction action = HttpAction.PATCH)
-        {
-            var content = new StringContent(body,
-                                             Encoding.UTF8,
-                                             "application/json"
-                                           );
-
-            var response = await client.PatchAsync(url, content);
-
-            // Check if the HTTP response was successful
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-
-                if (formatOutput)
-                {
-                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
-                    json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
-                }
-
-                return json;
-            }
-            else
-            {
-                return $"Error: {response.StatusCode}";
-            }
-        }
-
-        //DELETE method
-        public async Task<string> DeleteApiAsync(string url, bool formatOutput = true, HttpAction action = HttpAction.DELETE)
-        {
-            var response = await client.DeleteAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-
-                if (formatOutput)
-                {
-                    var jsonElement = JsonSerializer.Deserialize<JsonElement>(json);
+                    // Formatting JSON string
                     json = JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions { WriteIndented = true });
                 }
 
